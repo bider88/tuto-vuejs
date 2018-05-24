@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello World-vuejs</title>
+</head>
+<body>
+    
+    <div id="app">
+        hola {{ nombre }}
+        <a :href="url" target="_blank">Ir a {{ pagina }}</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                nombre: 'mundo!',
+                url: 'https://www.google.com',
+                pagina: 'Google'
+            }
+        })
+    </script>
+</body>
+</html>
