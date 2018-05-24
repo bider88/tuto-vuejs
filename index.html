@@ -9,8 +9,8 @@
 <body>
     
     <div id="app">
-        hola {{ nombre }}
-        <a :href="url" target="_blank">Ir a {{ pagina }}</a>
+        <h1>{{ title | uppercase }}</h1>
+        <h2>{{ subtitle | lowercase | capitalize }}</h2>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -18,9 +18,13 @@
         let app = new Vue({
             el: '#app',
             data: {
-                nombre: 'mundo!',
-                url: 'https://www.google.com',
-                pagina: 'Google'
+                title: 'mi título',
+                subtitle: 'MI SUBTÍTULO'
+            },
+            filters: {
+                uppercase: str => str.toUpperCase(),
+                lowercase :  str => str.toLowerCase(),
+                capitalize: str => str.charAt(0).toUpperCase() + str.slice(1)
             }
         })
     </script>
