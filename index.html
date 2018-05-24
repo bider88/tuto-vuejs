@@ -16,8 +16,6 @@
             <h2>¿Cuáles son tus lenguajes de programación favoritos?</h2>
             <template v-for="lan in languages">
                 <languages :lan="lan" @checked="selectLanguage"></languages>
-                <!-- <input v-model="selections" type="checkbox" v-bind:id="lan.value" v-bind:value="lan.value">
-                <label v-bind:for="lan.value">{{ lan.name }}</label> -->
             </template>
             <br>
             <button>Enviar</button>
