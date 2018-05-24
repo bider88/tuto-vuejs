@@ -14,16 +14,10 @@
 
         <form @submit.prevent="submit">
             <h2>¿Cuáles son tus lenguajes de programación favoritos?</h2>
-            <input v-model="language" type="checkbox" id="javascript" value="javascript">
-            <label for="javascript">Javascript</label>
-            <input v-model="language" type="checkbox" id="c" value="c">
-            <label for="c">C#</label>
-            <input v-model="language" type="checkbox" id="reactjs" value="reactjs">
-            <label for="reactjs">ReactJS</label>
-            <input v-model="language" type="checkbox" id="angular" value="angular">
-            <label for="angular">Angular</label>
-            <input v-model="language" type="checkbox" id="php" value="php">
-            <label for="php">PHP</label>
+            <template v-for="lan in languages">
+                <input v-model="selections" type="checkbox" v-bind:id="lan.value" v-bind:value="lan.value">
+                <label v-bind:for="lan.value">{{ lan.name }}</label>
+            </template>
             <br>
             <button>Enviar</button>
         </form>
@@ -35,14 +29,36 @@
             el: '#app',
             data: {
                 nombre: '',
-                language: []
+                languages: [
+                    {
+                        name: 'Javascript',
+                        value: 'javascript'
+                    },
+                    {
+                        name: 'C#',
+                        value: 'c sharp'
+                    },
+                    {
+                        name: 'Java',
+                        value: 'java'
+                    },
+                    {
+                        name: 'Python',
+                        value: 'python'
+                    },
+                    {
+                        name: 'PHP',
+                        value: 'php'
+                    }
+                ], 
+                selections: []
             },
             filters: {
                 uppercase: str => str.toUpperCase()
             },
             methods: {
                 submit: function() {
-                    console.log(this.language)
+                    console.log(this.selections)
                 }
             }
         })
