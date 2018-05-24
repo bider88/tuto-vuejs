@@ -9,8 +9,9 @@
 <body>
     
     <div id="app">
-        <h1>{{ title | uppercase }}</h1>
-        <h2>{{ subtitle | lowercase | capitalize }}</h2>
+        <button v-on:click="sumar">+1</button>
+        <button v-on:click="restar">-1</button>
+        El contador está en {{ count }}
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -18,13 +19,15 @@
         let app = new Vue({
             el: '#app',
             data: {
-                title: 'mi título',
-                subtitle: 'MI SUBTÍTULO'
+                count: 0
             },
-            filters: {
-                uppercase: str => str.toUpperCase(),
-                lowercase :  str => str.toLowerCase(),
-                capitalize: str => str.charAt(0).toUpperCase() + str.slice(1)
+            methods: {
+                sumar: function () {
+                    return this.count++
+                },
+                restar: function () {
+                    return this.count--
+                }
             }
         })
     </script>
