@@ -15,8 +15,9 @@
         <form @submit.prevent="submit">
             <h2>¿Cuáles son tus lenguajes de programación favoritos?</h2>
             <template v-for="lan in languages">
-                <input v-model="selections" type="checkbox" v-bind:id="lan.value" v-bind:value="lan.value">
-                <label v-bind:for="lan.value">{{ lan.name }}</label>
+                <languages :lan="lan" @checked="selectLanguage"></languages>
+                <!-- <input v-model="selections" type="checkbox" v-bind:id="lan.value" v-bind:value="lan.value">
+                <label v-bind:for="lan.value">{{ lan.name }}</label> -->
             </template>
             <br>
             <button>Enviar</button>
@@ -25,6 +26,22 @@
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
+
+        Vue.component('languages', {
+            props:['lan'],
+            methods: {
+                onchange: function (ev) {
+                    this.$emit('checked', this.lan.value, ev.target.checked)
+                }
+            },
+            template: `
+                <div>
+                    <input type="checkbox" v-bind:id="lan.value" v-bind:value="lan.value" @change="onchange">
+                    <label v-bind:for="lan.value">{{ lan.name }}</label> 
+                </div>
+            `
+        })
+
         let app = new Vue({
             el: '#app',
             data: {
@@ -59,6 +76,14 @@
             methods: {
                 submit: function() {
                     console.log(this.selections)
+                },
+                selectLanguage: function (lan, checked) {
+                    if (checked) {
+                        this.selections.push(lan)
+                    } else {
+                        let index = this.selections.indexOf(lan)
+                        this.selections.splice(index, 1)
+                    }
                 }
             }
         })
